@@ -45,7 +45,7 @@ variable "key_name" {
 variable "security_groups" {
   description = "A list of security group IDs to assign to the launch configuration"
   type        = list(string)
-  default     = ["sg-04f1aa4c78c5b39cd"]
+  default     = ["sg-0b6ec695ca5c5af30"]
 }
 
 variable "associate_public_ip_address" {
@@ -105,7 +105,7 @@ variable "create_asg_with_initial_lifecycle_hook" {
 variable "asg_name" {
   description = "Creates a unique name for autoscaling group beginning with the specified prefix"
   type        = string
-  default     = "autoscalinggroup"
+  default     = "my-asg"
 }
 
 variable "launch_configuration" {

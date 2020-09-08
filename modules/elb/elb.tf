@@ -9,6 +9,7 @@ resource "aws_elb" "this" {
   idle_timeout                = var.idle_timeout
   connection_draining         = var.connection_draining
   connection_draining_timeout = var.connection_draining_timeout
+  instances = var.instances
 
   dynamic "listener" {
     for_each = var.listener

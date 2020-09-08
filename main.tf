@@ -3,36 +3,6 @@ provider "aws" {
   profile = "Terraform"
 }
 
-#########################
-#EC2 Image
-#########################
-
-data "aws_ami" "ubuntu" {
-  most_recent = true
-  owners      = ["099720109477"]
-
-  filter {
-    name = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-20190722.1"]
-  }
-
-  filter {
-    name = "virtualization-type"
-    values = ["hvm"]
-  }
-}
-
-############################
-#Sec Grp && VPC
-############################
-
-data "aws_vpc" "select" {
-  filter {
-    name   = "tag:Name"
-    values = ["my-vpc"]
-  }
-}
-
 ###############################
 #Security group and Access Key
 ###############################
@@ -71,11 +41,11 @@ module "launch_asg" {
 
   # Auto scaling group
   asg_name                  = "my-asg"
-  vpc_zone_identifier       = ["subnet-0786e4546bfb1604e"]
+  vpc_zone_identifier       = ["subnet-0cba497d262c7c469", "subnet-09281c033921f7083"]
   health_check_type         = "EC2"
-  min_size                  = 1 
-  max_size                  = 1
-  desired_capacity          = 1
+  min_size                  = 2 
+  max_size                  = 2 
+  desired_capacity          = 2
   wait_for_capacity_timeout = 0
 
   depends_on = [module.access_key]
@@ -102,7 +72,7 @@ module "launch_elb" {
 
   name = "elb-test"
 
-  subnet_ids         = ["subnet-07e0f3d0584242fee"]
+  subnet_ids         = ["subnet-0a87d1d542038cc9a", "subnet-020038fe58f685324"]
 
   listener = [
     {
@@ -120,7 +90,7 @@ module "launch_elb" {
     unhealthy_threshold = 2
     timeout             = 5
   }
- 
+  
   depends_on = [module.access_key]
 
   tags = {
@@ -135,5 +105,5 @@ module "launch_elb" {
 module "redis" {
   source = "./modules/redis"
 
-  subnet_ids           = ["subnet-0786e4546bfb1604e"]
+  subnet_ids           = ["subnet-09281c033921f7083"]
 }
