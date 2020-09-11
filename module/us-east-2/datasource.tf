@@ -1,3 +1,7 @@
+variable "vpc_id" {
+   default = "vpc-ab1ebfc0"
+}
+
 #########################
 #EC2 Image
 #########################
@@ -22,10 +26,11 @@ data "aws_ami" "ubuntu" {
 ############################
 
 data "aws_vpc" "select" {
-  filter {
-    name   = "tag:Name"
-    values = ["my-vpc"]
-  }
+#  filter {
+#    name   = "tag:Name"
+#    values = ["my-vpc"]
+#  }
+   id = var.vpc_id
 }
 
 

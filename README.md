@@ -33,12 +33,14 @@ VPC:
    
         public-a   us-east-2a
         public-b   us-east-2b
+        
+--> Enable DNS Hostnames in VPC Actions tab and then got to subnets and select public subnets and modify ip assign settings from Action tab and select Auto Assign IP4. This enables public ip and DNS names for only public instance.
  
 --> Create 2 Route Tables public and private and point subnets accordingly
 
 --> Create Internet Gateway and add in public route table
 
---> Create NAT Gateway and point to any one public subnet and then add NAT Gateway in private subnet.
+--> Create NAT Gateway and point to any one public subnet and then add NAT Gateway in private route table.
 
 EC2:
 ---- 
@@ -66,7 +68,7 @@ Redis:
 How TO Test:
 -------------
 
---> once creation part is complete, copy ELB DNS url and paste it in browser and refresh continously. you will see difference response from public and private instance. 
+--> once creation part is complete, copy ELB DNS url and paste it in browser and refresh continously. you will see different response from public and private instance. 
 
    Ex: 
              
@@ -75,5 +77,9 @@ How TO Test:
        
        Deployed via Terraform..Public Instance
        ip-10-0-0-61
+       
+  --> You can SSH in to Public instance by using public ip but you can't SSH to private instance diectly because you won't get public ip for private instances.
 
 <b>Note: All files need to be modify according to your VPC details and update variables accordingly.<b>
+
+<b>Updated Logic for Two Regions.<b>

@@ -37,10 +37,10 @@ output "this_elb_instances" {
 }
 
 #Redis
-output "configuration_endpoint_address" {
-  value = module.redis.configuration_endpoint_address
-}
+#output "configuration_endpoint_address" {
+#  value = module.redis.configuration_endpoint_address
+#}
 
-output "primary_endpoint_address" {
-  value = module.redis.primary_endpoint_address
-}
+#output "primary_endpoint_address" {
+#  value = module.redis.primary_endpoint_address
+#}

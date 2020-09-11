@@ -78,11 +78,5 @@ variable "subnet_ids" {
 variable "security_groups" {
   description = "A list of security group IDs to assign to the launch configuration"
   type        = list(string)
-  default     = ["sg-0b6ec695ca5c5af30"]
-}
-
-variable "instances" {
-  description = "Add a list of instances to point to ELB"
-  type        = list(string)
-  default     = ["i-0f3094a52ca779c54"]
+  default     = ["sg-939a1dee"]
 }

@@ -45,7 +45,7 @@ variable "key_name" {
 variable "security_groups" {
   description = "A list of security group IDs to assign to the launch configuration"
   type        = list(string)
-  default     = ["sg-0b6ec695ca5c5af30"]
+  default     = ["sg-67ed4f5b"]
 }
 
 variable "associate_public_ip_address" {
@@ -123,7 +123,7 @@ variable "max_size" {
 variable "min_size" {
   description = "The minimum size of the auto scale group"
   type        = string
-  default     = "0"
+  default     = "1"
 }
 
 variable "desired_capacity" {
